@@ -32,16 +32,19 @@ export default {
     addTask() {
       this.arrayTasks.push(Math.random())
     },
+    // берем таск 
     dragStart:function(event)  {
       event.dataTransfer.setData("Text", event.target.id);
     },
     allowDrop:function(event) {
       event.preventDefault();
     },
+    // тут будет отпр. запрос на сервер для обновления данных о тасках.
     drop:function(event) {
       event.preventDefault();
       var data = event.dataTransfer.getData("Text");
       event.target.appendChild(document.getElementById(data));
+      console.log('drop')
     },
   }
 }
