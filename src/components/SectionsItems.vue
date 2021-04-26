@@ -5,7 +5,7 @@
     v-on:drop="drop">
     
     <h2>block</h2>
-    <button @click="addTask">add task</button>
+    <button @click="addTask" v-on:drop="dropNo">add task</button>
     <task-item 
       v-for="task in arrayTasks"
       :key="task"
@@ -43,9 +43,14 @@ export default {
     drop:function(event) {
       event.preventDefault();
       var data = event.dataTransfer.getData("Text");
-      event.target.appendChild(document.getElementById(data));
-      console.log('drop')
+      console.log(event.target)
+      if(event.target.classList.contains('section-drag')) {
+        event.target.appendChild(document.getElementById(data));
+      }
     },
+    dropNo(event) {
+      event.preventDefault();
+    }
   }
 }
 </script>
